@@ -1,0 +1,8 @@
+{
+  "name": "popup-blocker",
+  "version": "1.0.0",
+  "description": "Blocks annoying login popups (daily gift, diamond spin, news, etc.)",
+  "author": "MarchVulture",
+  "main": "index.html",
+  "type": "ui"
+}
