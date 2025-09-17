@@ -1,7 +1,28 @@
-<div class="p-4">
-  <h2 class="text-lg font-bold mb-2">Popup Blocker</h2>
-  <label class="flex items-center space-x-2">
-    <input type="checkbox" id="popupBlockerToggle" />
-    <span>Enable popup blocking</span>
-  </label>
-</div>
+<body class="bg-primary-bg text-text-primary h-screen flex flex-col overflow-hidden">
+
+  <!-- Standardized Draggable Header -->
+  <div class="jam-plugin-header">
+    <span class="jam-plugin-title">Popup Blocker</span>
+    <div class="jam-plugin-controls">
+      <button class="jam-plugin-minimize" aria-label="Minimize">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button class="jam-plugin-close" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="jam-plugin-content p-4 flex-1 flex flex-col space-y-4">
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" id="popupBlockerToggle" />
+      <span>Enable popup blocking</span>
+    </label>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./index.js"></script>
+  <script src="../../assets/javascript/plugin-utils.js"></script>
+  <script>
+    docu

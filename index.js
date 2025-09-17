@@ -1,5 +1,5 @@
 /**
- * Popup Blocker Plugin (UI + Toggle)
+ * Popup Blocker Plugin
  * Blocks daily gift, diamond spin, and news popups on login.
  */
 
@@ -13,7 +13,7 @@ class PopupBlocker {
   init() {
     if (this.initialized) return;
 
-    // Toggle element
+    // Toggle checkbox
     this.toggleEl = document.getElementById("popupBlockerToggle");
     if (this.toggleEl) {
       this.toggleEl.addEventListener("change", (e) => {
@@ -26,7 +26,7 @@ class PopupBlocker {
 
     // Hook packet stream
     jam.on("packet", (packet, direction, next) => {
-      if (!this.enabled) return next(packet); // pass through if disabled
+      if (!this.enabled) return next(packet);
       if (direction !== "in") return next(packet);
 
       if (packet.t === "xt") {
@@ -34,7 +34,7 @@ class PopupBlocker {
 
         if (["dl", "al", "bl"].includes(cmd)) {
           console.log(`[popup-blocker] blocked popup: ${cmd}`);
-          return; // drop
+          return; // drop packet
         }
 
         if (cmd === "gl") {
@@ -44,7 +44,7 @@ class PopupBlocker {
           ];
           if (blockedIDs.includes(Number(id))) {
             console.log(`[popup-blocker] blocked gl popup id: ${id}`);
-            return; // drop
+            return; // drop packet
           }
         }
       }
@@ -57,5 +57,7 @@ class PopupBlocker {
   }
 }
 
-// Expose globally so SJ recognizes it
-window.popupBlocker = new PopupBlocker();
+// Attach to window so SJ can find it
+document.addEventListener("DOMContentLoaded", () => {
+  window.popupBlocker = new PopupBlocker();
+});
